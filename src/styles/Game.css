@@ -1,0 +1,80 @@
+.game {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 400px;
+}
+
+.game-title {
+  font-size: 32px;
+  font-weight: 400;
+  font-family: "Roboto", serif;
+}
+
+.game-sub-title {
+  font-size: 24px;
+  font-weight: 400;
+  font-family: "Roboto", serif;
+  color: rgb(117, 135, 164);
+}
+
+.game-board {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.board-row {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.game-cell {
+  flex-basis: 12%;
+
+  width: 3vw;
+  height: 3vh;
+  min-width: 48px;
+  min-height: 48px;
+
+  border-radius: 5px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+}
+
+.cell-value {
+  color: #506466;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.sel-icon {
+  width: 3vw;
+  height: 3.5vh;
+  min-width: 48px;
+  min-height: 50px;
+}
+
+.delete-button {
+  background-color: transparent;
+  border: none;
+
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.delete-button:hover {
+  color: red;
+}
+
+.delete-icon {
+  width: 20px;
+  object-fit: contain;
+}
