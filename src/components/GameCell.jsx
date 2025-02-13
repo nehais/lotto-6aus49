@@ -1,10 +1,22 @@
 import SelectedIcon from "../assets/selected.png";
 
-const GameCell = ({ value, selected, setBoardCells, selectionCompl }) => {
+const GameCell = ({
+  value,
+  selected,
+  setBoardCells,
+  selectionCount,
+  setSelectionCount,
+}) => {
+  const maxSelection = 6; //Max Board Nos Selection Count
+
   function selectionChanged(e) {
     //6 Nos selected. No further selection allowed
-    if (selectionCompl && !selected) return;
+    if (selectionCount === maxSelection && !selected) return;
 
+    //Update the selection count
+    setSelectionCount((prev) => (selected ? --prev : ++prev));
+
+    //Update the Cell value for selection
     setBoardCells((prev) =>
       prev.map((cell) =>
         cell.no === value ? { ...cell, selected: !cell.selected } : cell
@@ -15,7 +27,7 @@ const GameCell = ({ value, selected, setBoardCells, selectionCompl }) => {
   return (
     <div
       className={`game-cell  ${
-        selectionCompl && !selected ? "cell-disabled" : " "
+        selectionCount === maxSelection && !selected ? "cell-disabled" : " "
       } `}
       onClick={selectionChanged}
     >
