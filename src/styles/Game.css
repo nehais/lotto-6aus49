@@ -11,6 +11,13 @@
   font-family: "Roboto", serif;
 }
 
+.game-header-ctrl {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .game-sub-title {
   font-size: 24px;
   font-weight: 400;
@@ -26,7 +33,9 @@
 
 .board-row {
   width: 100%;
+
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 5px;
 }
@@ -87,4 +96,27 @@
 
 .delete-button:focus {
   outline: none;
+}
+
+/***Selection Result***/
+.result-container {
+  display: flex;
+  gap: 5px;
+  user-select: none;
+}
+
+.display-ball {
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  background-image: url("../assets/ball.png");
+  background-size: 50px;
+
+  font-family: "Roboto", serif;
+  font-weight: bold;
+  color: #544c4c;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

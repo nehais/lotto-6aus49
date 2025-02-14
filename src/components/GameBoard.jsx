@@ -1,52 +1,32 @@
-import { useEffect, useState } from "react";
-import GameCell from "./GameCell";
+import { useContext } from "react";
+
+import { GameContext } from "../contexts/game.context";
+import GameCell from "../components/GameCell";
 
 const GameBoard = () => {
-  const boardCellsCount = 49; //Board Nos Count
-  const [boardCells, setBoardCells] = useState([]);
-  const [selectionCount, setSelectionCount] = useState(0);
+  const { boardCells, setBoardCells, setSelectionCount, setLottoSelStore } =
+    useContext(GameContext);
 
-  useEffect(() => {
-    let cellArr = [];
-    for (let i = 1; i <= boardCellsCount; i++) {
-      cellArr.push({ no: i, selected: false });
-    }
-
-    setBoardCells([...cellArr]);
-  }, [boardCellsCount]);
-
-  function deleteSelections() {
+  function clearSelections() {
+    //Clear all the selected Nos
     setSelectionCount(0);
+    localStorage.setItem("lottoSelection", []); //Clear Local Storage
+    setLottoSelStore([]);
     setBoardCells((prev) => prev.map((cell) => ({ ...cell, selected: false })));
-  }
-
-  function onNext() {
-    //Array is already sorted so just pick the selected Nos
-    const selectedNos = boardCells
-      .filter((cell) => cell.selected)
-      .map((selectedCell) => selectedCell.no);
-    console.log(selectedNos);
   }
 
   return (
     <div className="game-board">
-      <button onClick={onNext} className="home-buttons">
-        next
-      </button>
+      {/*Game Board Rows*/}
       <div className="board-row">
         {boardCells &&
-          boardCells.map((cell, index) => (
-            <GameCell
-              value={cell.no}
-              key={index}
-              selected={cell.selected}
-              setBoardCells={setBoardCells}
-              selectionCount={selectionCount}
-              setSelectionCount={setSelectionCount}
-            />
+          boardCells.map((cell) => (
+            <GameCell key={cell.no} value={cell.no} selected={cell.selected} />
           ))}
       </div>
-      <button className="delete-button" onClick={deleteSelections}>
+
+      {/*Clear Selection Button*/}
+      <button className="delete-button" onClick={clearSelections}>
         Löschen
       </button>
     </div>

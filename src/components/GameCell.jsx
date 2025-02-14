@@ -1,13 +1,16 @@
 import SelectedIcon from "../assets/selected.png";
+import { useContext } from "react";
+import { GameContext } from "../contexts/game.context";
 
-const GameCell = ({
-  value,
-  selected,
-  setBoardCells,
-  selectionCount,
-  setSelectionCount,
-}) => {
-  const maxSelection = 6; //Max Board Nos Selection Count
+const GameCell = ({ value, selected }) => {
+  const {
+    selectionCount,
+    setSelectionCount,
+    setBoardCells,
+    maxSelection,
+    lottoSelStore,
+    setLottoSelStore,
+  } = useContext(GameContext);
 
   function selectionChanged(e) {
     //6 Nos selected. No further selection allowed
@@ -15,6 +18,21 @@ const GameCell = ({
 
     //Update the selection count
     setSelectionCount((prev) => (selected ? --prev : ++prev));
+
+    if (!selected) {
+      //Update the localStorage with the selection to come back to
+      localStorage.setItem(
+        "lottoSelection",
+        JSON.stringify([...lottoSelStore, value])
+      );
+      setLottoSelStore([...lottoSelStore, value]);
+    } else {
+      const preSelection = lottoSelStore.filter((no) => no !== value);
+
+      //Update the localStorage with the selection to come back to
+      localStorage.setItem("lottoSelection", JSON.stringify(preSelection));
+      setLottoSelStore(preSelection);
+    }
 
     //Update the Cell value for selection
     setBoardCells((prev) =>
@@ -29,8 +47,9 @@ const GameCell = ({
       className={`game-cell  ${
         selectionCount === maxSelection && !selected ? "cell-disabled" : " "
       } `}
-      onClick={selectionChanged}
+      onClick={() => selectionChanged(value, selected)}
     >
+      {/*Show a cross if the no is selected else the No */}
       {selected && (
         <img src={SelectedIcon} alt="Cell selected Icon" className="sel-icon" />
       )}
