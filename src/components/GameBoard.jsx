@@ -1,11 +1,16 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import { GameContext } from "../contexts/game.context";
 import GameCell from "../components/GameCell";
 
 const GameBoard = () => {
+  const [show, setShow] = useState(false);
   const { boardCells, setBoardCells, setSelectionCount, setLottoSelStore } =
     useContext(GameContext);
+
+  useEffect(() => {
+    setShow(true);
+  }, []);
 
   function clearSelections() {
     //Clear all the selected Nos
@@ -16,7 +21,7 @@ const GameBoard = () => {
   }
 
   return (
-    <div className="game-board">
+    <div className={`game-board ${show ? "show" : ""}`}>
       {/*Game Board Rows*/}
       <div className="board-row">
         {boardCells &&
