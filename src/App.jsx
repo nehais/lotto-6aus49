@@ -1,6 +1,7 @@
 import "./App.css";
 
 import { Routes, Route } from "react-router-dom";
+
 import Header from "./components/header";
 import Home from "./pages/Home";
 import Game from "./pages/Game";

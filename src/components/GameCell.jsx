@@ -1,4 +1,3 @@
-import SelectedIcon from "../assets/selected.png";
 import { useContext } from "react";
 import { GameContext } from "../contexts/game.context";
 
@@ -45,14 +44,15 @@ const GameCell = ({ value, selected }) => {
   return (
     <div
       className={`game-cell  ${
-        selectionCount === maxSelection && !selected ? "cell-disabled" : " "
+        selectionCount === maxSelection && !selected
+          ? "cell-disabled "
+          : selected
+          ? " sel-icon"
+          : ""
       } `}
       onClick={() => selectionChanged(value, selected)}
     >
       {/*Show a cross if the no is selected else the No */}
-      {selected && (
-        <img src={SelectedIcon} alt="Cell selected Icon" className="sel-icon" />
-      )}
       {!selected && <span className="cell-value">{value}</span>}
     </div>
   );

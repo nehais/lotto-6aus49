@@ -11,8 +11,8 @@ const GameWrapper = ({ children }) => {
 
   useEffect(() => {
     //Get the Old selection from the Local Storage
-    let lottoSelection =
-      JSON.parse(localStorage.getItem("lottoSelection")) || [];
+    let lottoStr = localStorage.getItem("lottoSelection");
+    let lottoSelection = lottoStr ? JSON.parse(lottoStr) : [];
     setLottoSelStore(lottoSelection);
     setSelectionCount(lottoSelection.length);
 

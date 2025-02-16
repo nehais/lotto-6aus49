@@ -5,23 +5,14 @@ import GameCell from "../components/GameCell";
 
 const GameBoard = () => {
   const [show, setShow] = useState(false);
-  const { boardCells, setBoardCells, setSelectionCount, setLottoSelStore } =
-    useContext(GameContext);
+  const { boardCells } = useContext(GameContext);
 
   useEffect(() => {
     setShow(true);
   }, []);
 
-  function clearSelections() {
-    //Clear all the selected Nos
-    setSelectionCount(0);
-    localStorage.setItem("lottoSelection", []); //Clear Local Storage
-    setLottoSelStore([]);
-    setBoardCells((prev) => prev.map((cell) => ({ ...cell, selected: false })));
-  }
-
   return (
-    <div className={`game-board ${show ? "show" : ""}`}>
+    <div className={`game-board ${show ? "show-board" : ""}`}>
       {/*Game Board Rows*/}
       <div className="board-row">
         {boardCells &&
@@ -29,11 +20,6 @@ const GameBoard = () => {
             <GameCell key={cell.no} value={cell.no} selected={cell.selected} />
           ))}
       </div>
-
-      {/*Clear Selection Button*/}
-      <button className="delete-button" onClick={clearSelections}>
-        Löschen
-      </button>
     </div>
   );
 };
