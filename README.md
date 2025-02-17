@@ -28,22 +28,25 @@ Die Website ist so gestaltet, dass die wichtigsten Elemente im Fokus stehen, sod
 ## Navigation durch die Website
 
 - Startseite: Beim Laden der Website landet der Benutzer auf der Startseite.</br>
-  <img src="src/assets/readMeImgs/home.jpg" alt="Startseite" width="500"/></br>
+  <img src="src/assets/readMeImgs/Home.jpg" alt="Startseite" width="500"/></br>
   </br>Die Startseite besteht aus folgenden Abschnitten:</br>
 
   - Header: Die Kopfzeile der Website ist fixiert und ändert sich während der Navigation nicht.</br>
     Sie enthält das Website-Logo mit dem Namen. Durch Klicken auf das Logo kann der Benutzer zur Startseite navigieren.
   - Hauptinhalt: Beim ersten Laden werden zwei Buttons angezeigt: "Spielen" & "Spielregeln".
 
-    - Spielen: Nach der Auswahl dieses Buttons kann der Benutzer das Spiel starten.</br>
-      <img src="src/assets/readMeImgs/game.jpg" alt="Spiel" width="500"/></br>
+    1. Spielregeln: - Spielen: Nach der Auswahl dieses Buttons kann der Benutzer das Spiel starten.</br>
+       <img src="src/assets/readMeImgs/game.jpg" alt="Spiel" width="500"/></br>
 
     Es gibt zwei Steuerungen im unteren Bereich des Spiels:
 
     - Löschen: Löscht alle Auswahlen mit einem Klick.
-    - Fortschrittsbalken: Zeigt den Fortschritt der Auswahl an. Nach Abschluss der Auswahl führt ein Klick auf dieses Element zur Coupon-Auswahlseite, auf der die sortierten Zahlen angezeigt werden.</br>
+
+    - Fortschrittsbalken: Zeigt den Fortschritt der Auswahl an. Nach Abschluss der Auswahl führt ein Klick auf dieses Element zur
+      Coupon-Auswahlseite, auf der die sortierten Zahlen angezeigt werden.</br>
       <img src="src/assets/readMeImgs/result.jpg" alt="Ergebnis-Seite" width="500"/></br>
-    - Spielregeln: Nach der Auswahl dieses Buttons werden dem Benutzer die Spielregeln sowie der "Spielen"-Button angezeigt.
+
+    2. Spielregeln: Nach der Auswahl dieses Buttons werden dem Benutzer die Spielregeln sowie der "Spielen"-Button angezeigt.
 
 ## So richten Sie das Projekt ein
 
@@ -85,7 +88,10 @@ Die Website ist so gestaltet, dass die wichtigsten Elemente im Fokus stehen, sod
    Container für das Spielbrett und die Steuerungen.
 
 3. GameCell.jsx<br/>
+   Zahlenzelle, die die gesamte Spiellogik aktualisiert.
 
 4. GameProgressBar.jsx<br/>
+   Logik der Fortschrittsanzeige.
 
 5. SelectionResult.jsx<br/>
+   Nach der Auswahl werden hier die sortierten Nummern angezeigt.
