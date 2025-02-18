@@ -28,6 +28,7 @@ const GameProgressBar = ({ setDisplaySelection }) => {
       onClick={handleClick}
       className={selectionCount === maxSelection ? "avail" : "not-avail"}
     >
+      {/*Increase the progress bar width to indicate progress*/}
       <div id="progressBar" style={{ width: `${progPercent * 2.3}px` }}></div>
       <span id="progressBar-text">
         {selectionCount === maxSelection

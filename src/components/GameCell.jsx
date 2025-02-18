@@ -26,6 +26,7 @@ const GameCell = ({ value, selected }) => {
       );
       setLottoSelStore([...lottoSelStore, value]);
     } else {
+      //Remove the no from the selected list
       const preSelection = lottoSelStore.filter((no) => no !== value);
 
       //Update the localStorage with the selection to come back to

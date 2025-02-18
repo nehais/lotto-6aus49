@@ -15,6 +15,7 @@ const GameBoard = () => {
     <div className={`game-board ${show ? "show-board" : ""}`}>
       {/*Game Board Rows*/}
       <div className="board-row">
+        {/*Game No Cells*/}
         {boardCells &&
           boardCells.map((cell) => (
             <GameCell key={cell.no} value={cell.no} selected={cell.selected} />
