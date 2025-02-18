@@ -10,6 +10,7 @@ const GameProgressBar = ({ setDisplaySelection }) => {
     if (lottoSelStore.length > 0) {
       const percent = (lottoSelStore.length / maxSelection) * 100;
       setProgPercent(percent);
+      console.log("Selection progress %:", percent);
     } else {
       setProgPercent(0);
     }
@@ -18,6 +19,7 @@ const GameProgressBar = ({ setDisplaySelection }) => {
   function handleClick() {
     if (lottoSelStore.length === maxSelection) {
       //When max selection made then show the result
+      console.log("Proceeding to reveal the numbers");
       setDisplaySelection(true);
     }
   }

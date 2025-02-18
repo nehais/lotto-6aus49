@@ -11,6 +11,7 @@ const Game = () => {
 
   function clearSelections() {
     //Clear all the selected Nos
+    console.log("Clearing all the selections on the Board");
     setLottoSelStore([]); //Clear Context Storage
     localStorage.setItem("lottoSelection", []); //Clear Local Storage
     setBoardCells((prev) => prev.map((cell) => ({ ...cell, selected: false }))); //Reset Context Boardcells

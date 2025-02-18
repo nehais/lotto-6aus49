@@ -6,18 +6,20 @@ import Header from "./components/Header";
 import Home from "./pages/Home";
 import Game from "./pages/Game";
 import Rules from "./pages/Rules";
+import PageNotFound from "./pages/PageNotFound";
 
 function App() {
   return (
     <div className="App">
       <Header />
-      <div className="main-content">
+      <section className="main-content">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/spielen" element={<Game />} />
           <Route path="/spielregeln" element={<Rules />} />
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
-      </div>
+      </section>
     </div>
   );
 }

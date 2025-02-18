@@ -9,23 +9,45 @@ const GameWrapper = ({ children }) => {
   const [boardCells, setBoardCells] = useState([]); //Board cells of nos
 
   useEffect(() => {
-    //Get the Old selection from the Local Storage
-    let lottoStr = localStorage.getItem("lottoSelection");
-    let lottoSelection = lottoStr ? JSON.parse(lottoStr) : [];
-    setLottoSelStore(lottoSelection);
+    try {
+      //Get the Old selection from the Local Storage
+      let lottoStr = localStorage.getItem("lottoSelection");
+      let lottoSelection = lottoStr ? JSON.parse(lottoStr) : [];
 
-    //Initialize the game board with Cell no & its state
-    let cells = Array.from({ length: boardCellsCount }, (v, i) => {
-      //Each cell will hold a Number & Selection state
-      //If the no preselected in localStorage then select
-      const preSelection = lottoSelection.indexOf(i + 1) >= 0 ? true : false;
+      if (!Array.isArray(lottoSelection)) {
+        console.error("Error getting the Local Storage:", error);
+        lottoSelection = [];
+      }
 
-      return {
-        no: i + 1,
-        selected: preSelection,
-      };
-    });
-    setBoardCells(cells);
+      setLottoSelStore(lottoSelection);
+
+      //Initialize the game board with Cell no & its state
+      let cells = Array.from({ length: boardCellsCount }, (v, i) => {
+        //Each cell will hold a Number & Selection state
+        //If the no preselected in localStorage then set as selected
+        const preSelection = lottoSelection.indexOf(i + 1) >= 0 ? true : false;
+
+        return {
+          no: i + 1,
+          selected: preSelection,
+        };
+      });
+      setBoardCells(cells);
+    } catch (error) {
+      console.error("Error setting up the game board:", error);
+
+      //We re-set the whole game & build a new game
+
+      localStorage.removeItem("lottoSelection"); //Remove the LocalStorage
+      setLottoSelStore([]);
+      let cells = Array.from({ length: boardCellsCount }, (v, i) => {
+        return {
+          no: i + 1,
+          selected: false,
+        };
+      });
+      setBoardCells(cells);
+    }
   }, [boardCellsCount]);
 
   return (

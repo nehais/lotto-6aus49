@@ -1,6 +1,7 @@
 import { useEffect, useContext, useState } from "react";
 
 import { GameContext } from "../contexts/game.context";
+import { Link } from "react-router-dom";
 const SelectionResult = () => {
   const { lottoSelStore } = useContext(GameContext);
   const [finalSelection, setFinalSelection] = useState([]);
@@ -24,6 +25,10 @@ const SelectionResult = () => {
             </div>
           ))}
       </div>
+
+      <Link to="/">
+        <button className="home-buttons rules-play-button">Startseite</button>
+      </Link>
     </div>
   );
 };

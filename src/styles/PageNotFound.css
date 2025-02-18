@@ -1,0 +1,16 @@
+.page-not-found {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  height: 400px;
+
+  h3 {
+    color: #56696b;
+  }
+}
+
+.error-page-icon {
+  width: 200px;
+}

@@ -9,6 +9,8 @@ const GameCell = ({ value, selected }) => {
     //6 Nos selected. No further selection allowed
     if (lottoSelStore.length === maxSelection && !selected) return;
 
+    console.log("No. selection changed: ", value, !selected);
+
     if (!selected) {
       //Add the selected no to the localStorage & Lotto state
       localStorage.setItem(
