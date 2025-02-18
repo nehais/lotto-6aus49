@@ -7,12 +7,10 @@ import { GameContext } from "../contexts/game.context";
 
 const Game = () => {
   const [displaySelection, setDisplaySelection] = useState(false);
-  const { setBoardCells, setSelectionCount, setLottoSelStore } =
-    useContext(GameContext);
+  const { setBoardCells, setLottoSelStore } = useContext(GameContext);
 
   function clearSelections() {
     //Clear all the selected Nos
-    setSelectionCount(0); //Clear Context Storage Cnt
     setLottoSelStore([]); //Clear Context Storage
     localStorage.setItem("lottoSelection", []); //Clear Local Storage
     setBoardCells((prev) => prev.map((cell) => ({ ...cell, selected: false }))); //Reset Context Boardcells
