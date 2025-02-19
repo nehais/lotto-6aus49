@@ -4,6 +4,7 @@ import GameBoard from "../components/GameBoard";
 import SelectionResult from "../components/SelectionResult";
 import GameProgressBar from "../components/GameProgressBar";
 import { GameContext } from "../contexts/game.context";
+import { LottoStorageUtils } from "../utils/LottoStorageUtils";
 
 const Game = () => {
   const [displaySelection, setDisplaySelection] = useState(false);
@@ -13,7 +14,7 @@ const Game = () => {
     //Clear all the selected Nos
     console.log("Clearing all the selections on the Board");
     setLottoSelStore([]); //Clear Context Storage
-    localStorage.setItem("lottoSelection", []); //Clear Local Storage
+    LottoStorageUtils.setItem([]); //Clear Local Storage
     setBoardCells((prev) => prev.map((cell) => ({ ...cell, selected: false }))); //Reset Context Boardcells
   }
 

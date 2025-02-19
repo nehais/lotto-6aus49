@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect } from "react";
+import { LottoStorageUtils } from "../utils/LottoStorageUtils";
 
 const GameContext = createContext({});
 
@@ -9,45 +10,23 @@ const GameWrapper = ({ children }) => {
   const [boardCells, setBoardCells] = useState([]); //Board cells of nos
 
   useEffect(() => {
-    try {
-      //Get the Old selection from the Local Storage
-      let lottoStr = localStorage.getItem("lottoSelection");
-      let lottoSelection = lottoStr ? JSON.parse(lottoStr) : [];
+    //Get the Old selection from the Local Storage
+    const lottoSelection = LottoStorageUtils.getItem();
 
-      if (!Array.isArray(lottoSelection)) {
-        console.error("Error getting the Local Storage:", error);
-        lottoSelection = [];
-      }
+    setLottoSelStore(lottoSelection);
 
-      setLottoSelStore(lottoSelection);
+    //Initialize the game board with Cell no & its state
+    let cells = Array.from({ length: boardCellsCount }, (v, i) => {
+      //Each cell will hold a Number & Selection state
+      //If the no preselected in localStorage then set as selected
+      const preSelection = lottoSelection.indexOf(i + 1) >= 0 ? true : false;
 
-      //Initialize the game board with Cell no & its state
-      let cells = Array.from({ length: boardCellsCount }, (v, i) => {
-        //Each cell will hold a Number & Selection state
-        //If the no preselected in localStorage then set as selected
-        const preSelection = lottoSelection.indexOf(i + 1) >= 0 ? true : false;
-
-        return {
-          no: i + 1,
-          selected: preSelection,
-        };
-      });
-      setBoardCells(cells);
-    } catch (error) {
-      console.error("Error setting up the game board:", error);
-
-      //We re-set the whole game & build a new game
-
-      localStorage.removeItem("lottoSelection"); //Remove the LocalStorage
-      setLottoSelStore([]);
-      let cells = Array.from({ length: boardCellsCount }, (v, i) => {
-        return {
-          no: i + 1,
-          selected: false,
-        };
-      });
-      setBoardCells(cells);
-    }
+      return {
+        no: i + 1,
+        selected: preSelection,
+      };
+    });
+    setBoardCells(cells);
   }, [boardCellsCount]);
 
   return (

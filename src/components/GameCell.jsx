@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { GameContext } from "../contexts/game.context";
+import { LottoStorageUtils } from "../utils/LottoStorageUtils";
 
 const GameCell = ({ value, selected }) => {
   const { setBoardCells, maxSelection, lottoSelStore, setLottoSelStore } =
@@ -13,17 +14,14 @@ const GameCell = ({ value, selected }) => {
 
     if (!selected) {
       //Add the selected no to the localStorage & Lotto state
-      localStorage.setItem(
-        "lottoSelection",
-        JSON.stringify([...lottoSelStore, value])
-      );
+      LottoStorageUtils.setItem([...lottoSelStore, value]);
       setLottoSelStore([...lottoSelStore, value]);
     } else {
       //Remove the deselected no from the localStorage & Lotto state
       const preSelection = lottoSelStore.filter((no) => no !== value);
 
       //Update the localStorage with the selection to come back to
-      localStorage.setItem("lottoSelection", JSON.stringify(preSelection));
+      LottoStorageUtils.setItem(preSelection);
       setLottoSelStore(preSelection);
     }
 

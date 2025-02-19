@@ -6,7 +6,11 @@ import { Link } from "react-router-dom";
 const PageNotFound = () => {
   return (
     <div className="page-not-found">
-      <img src={PageError} alt="Page Not Found" className="error-page-icon" />
+      <img
+        src={PageError}
+        alt="Seite nicht gefunden"
+        className="error-page-icon"
+      />
       <h3>Seite nicht gefunden</h3>
       <Link to="/">
         <button className="home-buttons rules-play-button">Startseite</button>
